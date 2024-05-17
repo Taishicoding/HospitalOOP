@@ -1,11 +1,11 @@
 #include "Patient.h"
 #include <iostream>
 //Constructors
-Patient::Patient() :Person(), patientID("") {}
-Patient::Patient(const std::string& name, int age, const std::string& contactNo,const std::string& patientID)
- :Person(name,age,contactNo), patientID(patientID){}
+Patient::Patient() :Person(), patientID() {}
+Patient::Patient(const std::string& name, int age, const std::string& contactNo,const int& patientID)
+Patient::Person(name,age,contactNo), patientID(patientID){}
 //get functions
- std::string Patient::getpatientID()const{
+int Patient::getPatientID()const{
     return patientID;
  }
  std::vector<std::string> Patient::getSymptons()const{
@@ -18,7 +18,7 @@ Patient::Patient(const std::string& name, int age, const std::string& contactNo,
     return treatments;
  }
  //setter functions
- void Patient::setpatientID(const std::string& patientID){
+ void Patient::setpatientID(const int& patientID){
     this->patientID = patientID;
  };
   void Patient::setSymptons(const std::string& sympton){
