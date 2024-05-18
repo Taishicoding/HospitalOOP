@@ -27,19 +27,4 @@ class MedStaff : public Employee {
 
         virtual void printInfo() const override;
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #endif
