@@ -35,3 +35,14 @@ void Nurse::addRole(const std::string& role) {
 void Nurse::setAreaOfField(const std::string& field) {
     this->areaOfField = field;
 }
+void Nurse::printInfo() const {
+    MedStaff::printInfo(); 
+    std::cout << "Shift Length: " << shiftLength << " hours\n";
+    std::cout << "Area of Field: " << areaOfField << "\n";
+    std::cout << "Roles: ";
+    for (const auto& role : roles) {
+        std::cout << role << ", ";
+    }
+    std::cout << std::endl;
+}
+
