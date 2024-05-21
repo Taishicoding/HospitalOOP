@@ -7,26 +7,31 @@
 
 class Patient : public Person {
 protected:
-    int patientID;
+    std::string patientID;
     std::vector<std::string> symptoms;
     std::string diagnosis;
     std::vector<std::string> treatments;
 
-public:
-    Patient();
-    Patient(const std::string& name, int age, const std::string& contactNo, int patientID);
+    double outstandingBalance; 
 
-    int getPatientID() const;
+public:
+    Patient(); 
+    Patient(const std::string& name, int age, const std::string& contactNo, std::string patientID);
+
+    std::string getPatientID() const;
     std::vector<std::string> getSymptoms() const;
     std::string getDiagnosis() const;
     std::vector<std::string> getTreatments() const;
 
-    void setPatientID(int patientID);
+    void setPatientID(std::string patientID);
     void setSymptoms(const std::string& symptom);
     void setDiagnosis(const std::string& diagnosis);
     void setTreatments(const std::string& treatment);
 
     void printInfo() const override;
+
+    double getOutstandingBalance();
+    void setOutstandingBalance(double newPrice);
 };
 
 #endif // PATIENT_Hs

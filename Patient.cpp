@@ -1,12 +1,12 @@
 #include "Patient.h"
 #include <iostream>
 
-Patient::Patient() : Person(), patientID(0) {}
+Patient::Patient() : Person(), patientID("0") {}
 
-Patient::Patient(const std::string& name, int age, const std::string& contactNo, int patientID)
-    : Person(name, age, contactNo), patientID(patientID) {}
+Patient::Patient(const std::string& name, int age, const std::string& contactNo, std::string patientID)
+    : Person(name, age, contactNo), patientID(patientID), outstandingBalance(0) {}
 
-int Patient::getPatientID() const {
+std::string Patient::getPatientID() const {
     return patientID;
 }
 
@@ -22,7 +22,7 @@ std::vector<std::string> Patient::getTreatments() const {
     return treatments;
 }
 
-void Patient::setPatientID(int patientID) {
+void Patient::setPatientID(std::string patientID) {
     this->patientID = patientID;
 }
 
@@ -53,3 +53,6 @@ void Patient::printInfo() const {
     }
     std::cout << std::endl;
 }
+
+double Patient::getOutstandingBalance(){ return outstandingBalance;}
+void Patient::setOutstandingBalance(double newPrice){ outstandingBalance = newPrice;} 
