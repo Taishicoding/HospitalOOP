@@ -5,5 +5,5 @@ terminal: Hospital.cpp Patient.cpp Employee.cpp Person.cpp Appointment.cpp MedSt
 unit testing: 
 
 
-clear: 
-	rm -f interface
+clean: 
+	rm interface
