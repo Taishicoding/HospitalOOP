@@ -1,45 +1,28 @@
 #include "Appointment.h"
+#include <iostream>
 
-Appointment::Appointment(){
-    appointmentID = "0"; 
-} 
+Appointment::Appointment(Patient* patient, std::string needs, std::string dateAndTime, std::string appointmentID)
+    : patientPtr(patient), needs(needs), dateAndTime(dateAndTime), appointmentID(appointmentID), appointmentPrice(0.0) {}
 
-Appointment::Appointment(Patient* patient, std::string needs, std::string date_time, std::string appID){
-    ptrPatient = patient; 
-    patientNeeds = needs; 
-    dateAndTime = date_time;
-    appointmentID = appID; 
-    appointmentPrice = 0;  
-} 
-
-Patient* Appointment::getPatientPtr(){
-    return ptrPatient; 
+Patient* Appointment::getPatientPtr() const {
+    return patientPtr;
 }
 
-std::string Appointment::getAppointmentID(){
-    return appointmentID; 
+std::string Appointment::getAppointmentID() const {
+    return appointmentID;
 }
 
-int Appointment::getAppointmentPrice(){
-    return appointmentPrice; 
+double Appointment::getAppointmentPrice() const {
+    return appointmentPrice;
 }
 
-void Appointment::setAppointmentPrice (double price){
-    appointmentPrice = price; 
-
-    cout << "Price set." << endl; 
+void Appointment::setAppointmentPrice(double price) {
+    appointmentPrice = price;
 }
 
-void Appointment::printInfo(){
-
-    Patient patient = *ptrPatient; 
-
-    //Patient information 
-    cout << "Patient Information: " << endl << patient.getInfo() << endl; 
-
-    //Appointment information. 
-    cout << "Appointment Information: " << appointmentID << endl << patientNeeds << endl << dateAndTime << appointmentPrice << endl; 
-
-} 
-
-Appointment::~Appointment(){}
+void Appointment::printInfo() const {
+    std::cout << "Appointment ID: " << appointmentID << "\n"
+              << "Needs: " << needs << "\n"
+              << "Date and Time: " << dateAndTime << "\n"
+              << "Appointment Price: " << appointmentPrice << std::endl;
+}

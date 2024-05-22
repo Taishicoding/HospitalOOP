@@ -1,4 +1,4 @@
-#include "Appointment.h"
+#include "Appointment2.h"
 #include <iostream>
 Appointment::Appointment(const std::string& id, const std::string& date, const std::string& time,
                          const std::string& patientID, const std::string& doctorID, const std::string& description)

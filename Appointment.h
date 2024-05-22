@@ -1,37 +1,24 @@
 #ifndef APPOINTMENT_H
 #define APPOINTMENT_H
 
-#include <iostream>
+#include <string>
 #include "Patient.h"
 
-using namespace std; 
-
 class Appointment {
+private:
+    Patient* patientPtr;
+    std::string needs;
+    std::string dateAndTime;
+    std::string appointmentID;
+    double appointmentPrice;
 
-protected: 
-
-    Patient* ptrPatient; 
-    std::string patientNeeds, dateAndTime, appointmentID; 
-    double appointmentPrice; 
-
-public: 
-
-    Appointment(); 
-    Appointment(Patient* patient, std::string needs, std::string date_time, std::string appID); 
-
-
-    Patient* getPatientPtr(); 
-    std::string getAppointmentID(); 
-    int getAppointmentPrice(); 
-
-    void setAppointmentPrice (double price); 
-    void printInfo(); 
-
-    ~Appointment(); 
-
+public:
+    Appointment(Patient* patient, std::string needs, std::string dateAndTime, std::string appointmentID);
+    Patient* getPatientPtr() const;
+    std::string getAppointmentID() const;
+    double getAppointmentPrice() const;
+    void setAppointmentPrice(double price);
+    void printInfo() const;
 };
-
-
-
 
 #endif

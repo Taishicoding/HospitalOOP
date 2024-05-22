@@ -53,6 +53,6 @@ void Patient::printInfo() const {
     }
     std::cout << std::endl;
 }
-
+Patient patient("Fred",10,"contact", "123");
 double Patient::getOutstandingBalance(){ return outstandingBalance;}
 void Patient::setOutstandingBalance(double newPrice){ outstandingBalance = newPrice;} 
