@@ -5,30 +5,30 @@
 #include <vector>
 #include <string>
 
+// nurse class inherits from medstaff
 class Nurse : public MedStaff {
 private:
-    int shiftLength;
-    std::vector<std::string> roles;
-    std::string areaOfField;
+    int shiftLength; // length of nurse's shift
+    std::vector<std::string> roles; // list of nurse's roles
+    std::string areaOfField; // nurse's area of specialization
 
 public:
-    Nurse();
+    Nurse(); // default constructor
     Nurse(const std::string& name, int age, const std::string& contactNo,
           const std::string& employeeID, const std::string& department,
           const std::string& position, const std::string& qualifications,
-          int experienceYears, int shiftLength, const std::string& areaOfField);
-    virtual ~Nurse();
+          int experienceYears, int shiftLength, const std::string& areaOfField); // constructor with parameters
+    virtual ~Nurse(); // destructor
 
-    int getShiftLength() const;
-    std::vector<std::string> getRoles() const;
-    std::string getAreaOfField() const;
+    int getShiftLength() const; // gets shift length
+    std::vector<std::string> getRoles() const; // gets roles
+    std::string getAreaOfField() const; // gets area of field
 
-   
-    void setShiftLength(int shiftLength);
-    void addRole(const std::string& role); 
-    void setAreaOfField(const std::string& field);
+    void setShiftLength(int shiftLength); // sets shift length
+    void addRole(const std::string& role); // adds a role
+    void setAreaOfField(const std::string& field); // sets area of field
 
-    virtual void printInfo() const override;
+    virtual void printInfo() const override; // prints info about nurse
 };
 
-#endif 
+#endif
