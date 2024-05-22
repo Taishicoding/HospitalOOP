@@ -4,7 +4,7 @@
 using namespace std;
 
 HospitalSystem::HospitalSystem() : hospital(500, 60) {
-    //intilise some test cases, also can be usef if person does not create new patient etc
+    // initialize some test cases, useful if user doesn't create new patient etc
     hospital.addNewPatient("Taishi", 19, "123456789", "1");
     hospital.addNewPatient("Tatiana", 20, "987654321", "2");
 
@@ -19,20 +19,21 @@ HospitalSystem::HospitalSystem() : hospital(500, 60) {
     hospital.addAppointmentRequest(appointment2);
     hospital.approveAppointment(appointment2, 200.0);
 }
- //Initialise input variable.
+
+// runs the hospital system
 void HospitalSystem::run() {
     int modeSelector = 0;
     cout << "Welcome!" << endl;
-//Loop program infinitely using while loop
+    // loop program infinitely using while loop
     while (true) {
-        cout << "Enter 1 for Patient, 2 for Doctor, or 3 for Staff: "; //Prompt the user for mode (patient or hospital staff)
+        cout << "Enter 1 for Patient, 2 for Doctor, or 3 for Staff: "; // prompt the user for mode (patient, doctor, or hospital staff)
         cin >> modeSelector;
- //Invalid mode untit valid input.
+        // invalid mode until valid input
         while ((modeSelector != 1) && (modeSelector != 2) && (modeSelector != 3)) {
             cout << "Invalid input. Please select 1 for Patient, 2 for Doctor, or 3 for Staff: ";
             cin >> modeSelector;
         }
-//Patient 
+        // switch between modes based on user input
         try {
             switch (modeSelector) {
                 case 1:
@@ -52,9 +53,10 @@ void HospitalSystem::run() {
         }
     }
 }
-//Patient 
+
+// handles patient mode
 void HospitalSystem::patientMode() {
-    int patientMode; //Request patient's intent
+    int patientMode; // request patient's intent
     cout << "To set an appointment, select 1; To access personal information, select 2; To settle payment, select 3: ";
     cin >> patientMode;
 
@@ -62,7 +64,8 @@ void HospitalSystem::patientMode() {
         cout << "Invalid input. To set an appointment, select 1; To access personal information, select 2; To settle payment, select 3: ";
         cin >> patientMode;
     }
-//Reference ID to array of patients in hospital. 
+
+    // reference ID to array of patients in hospital
     string userID;
     cout << "Enter your patient ID: ";
     cin >> userID;
@@ -84,12 +87,13 @@ void HospitalSystem::patientMode() {
     }
 }
 
+// handles doctor mode
 void HospitalSystem::doctorMode() {
     string appID;
     cout << "Enter appointment ID: ";
     cin >> appID;
 
-    Appointment* appointmentObject = findAppointmentByID(appID);  // Use pointer
+    Appointment* appointmentObject = findAppointmentByID(appID);  // use pointer
     if (!appointmentObject) {
         throw std::invalid_argument("Invalid appointment ID");
     }
@@ -136,6 +140,7 @@ void HospitalSystem::doctorMode() {
     cout << appointmentObject->getAppointmentPrice() << endl;
 }
 
+// handles staff mode
 void HospitalSystem::staffMode() {
     int staffMode;
     cout << "To access personal information, select 1; To add new employee, select 2; To add new patient, select 3; To approve an appointment, select 4: ";
@@ -169,7 +174,7 @@ void HospitalSystem::staffMode() {
                 cout << "Enter appointment ID: ";
                 cin >> appID;
 
-                Appointment* appointmentObject = findAppointmentByID(appID);  // Use pointer
+                Appointment* appointmentObject = findAppointmentByID(appID);  // use pointer
                 if (!appointmentObject) {
                     throw std::invalid_argument("Invalid appointment ID");
                 }
@@ -187,6 +192,7 @@ void HospitalSystem::staffMode() {
     }
 }
 
+// sets an appointment for patient
 void HospitalSystem::setAppointment(Patient& patientObject) {
     string needs, dateAndTime, newAppID;
 
@@ -199,10 +205,11 @@ void HospitalSystem::setAppointment(Patient& patientObject) {
     cout << "Enter unique appointment ID: ";
     cin >> newAppID;
 
-    Appointment* appointment = new Appointment(&patientObject, needs, dateAndTime, newAppID);  // Allocate on heap
+    Appointment* appointment = new Appointment(&patientObject, needs, dateAndTime, newAppID);  // allocate on heap
     hospital.addAppointmentRequest(appointment);
 }
 
+// accesses patient info
 void HospitalSystem::accessPatientInfo(Patient& patientObject) {
     patientObject.printInfo();
     if (patientObject.getOutstandingBalance() > 0) {
@@ -217,6 +224,7 @@ void HospitalSystem::accessPatientInfo(Patient& patientObject) {
     }
 }
 
+// settles payment for patient
 void HospitalSystem::settlePayment(Patient& patientObject) {
     if (patientObject.getOutstandingBalance() > 0) {
         int settle;
@@ -232,6 +240,7 @@ void HospitalSystem::settlePayment(Patient& patientObject) {
     }
 }
 
+// adds a new employee
 void HospitalSystem::addNewEmployee() {
     int employeeType;
     cout << "To add general employee, select 1" << endl;
@@ -302,6 +311,7 @@ void HospitalSystem::addNewEmployee() {
     }
 }
 
+// adds a new patient
 void HospitalSystem::addNewPatient() {
     std::string newPatientName, newPatientContact, newPatientID;
     int newPatientAge;
@@ -319,6 +329,7 @@ void HospitalSystem::addNewPatient() {
     hospital.addNewPatient(newPatientName, newPatientAge, newPatientContact, newPatientID);
 }
 
+// finds patient by id
 Patient HospitalSystem::findPatientByID(const std::string& userID) {
     Patient** patientsArray = hospital.getPatientArray();
     for (int i = 0; i < hospital.getCurrentPatients(); ++i) {
@@ -329,6 +340,7 @@ Patient HospitalSystem::findPatientByID(const std::string& userID) {
     throw std::invalid_argument("Invalid patient ID");
 }
 
+// finds appointment by id
 Appointment* HospitalSystem::findAppointmentByID(const std::string& appID) {
     Appointment** appointmentsArray = hospital.getAppointmentArray();
     for (int i = 0; i < hospital.getCurrentNumAppointments(); ++i) {
@@ -339,6 +351,7 @@ Appointment* HospitalSystem::findAppointmentByID(const std::string& appID) {
     throw std::invalid_argument("Invalid appointment ID");
 }
 
+// finds employee by id
 Employee HospitalSystem::findEmployeeByID(const std::string& userID) {
     Employee** employeesArray = hospital.getEmployeesArray();
     for (int i = 0; i < hospital.getCurrentEmployees(); ++i) {
