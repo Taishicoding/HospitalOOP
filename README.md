@@ -1,31 +1,41 @@
-Three Levels of Inheritance:
-Base Class: Person{
-    name
-    age
-    contact info
-}
-//1. Employee {
-    Inherits from Person
-    New Stuff:
-        Employee ID
-        Department
-        Salary
-}
-//2. Medical Staff {
-    Inherits from Employee
-    New stuff:
-        qualifications
-        years of experience
-}
-//3. Doctor {
-    Inherits from Medical Staff
-    New stuff:
-        specilisation
-        patient list
-}
-//3. Nurse {
-    Inherits from Medical Staff
-    New stuff:
-        shifts
-        tasks
-}
+Overview
+
+This is an Object-Oriented Programming (OOP) design for a basic hospital management system.
+It demonstrates how inheritance can be used to model real-world relationships, starting from a general Person class and extending into more specialized roles like Doctor and Nurse.
+
+Base Class: Person
+name
+age
+contactInfo
+Level 1: Employee (inherits from Person)
+
+Additional Attributes:
+
+employeeID
+department
+salary
+Level 2: MedicalStaff (inherits from Employee)
+
+Additional Attributes:
+
+qualifications
+yearsOfExperience
+Level 3: Specialized Roles
+Doctor (inherits from MedicalStaff)
+
+Additional Attributes:
+
+specialisation
+patientList
+Nurse (inherits from MedicalStaff)
+
+Additional Attributes:
+
+shifts
+tasks
+Visual Hierarchy
+Person
+└── Employee
+    └── MedicalStaff
+        ├── Doctor
+        └── Nurse
